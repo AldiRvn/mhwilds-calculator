@@ -25,7 +25,7 @@ export default function RootLayout({
     <html lang="en">
       <TooltipProvider delayDuration={100}>
         <body
-          className={`bg-background text-white ${funnel.variable} antialiased`}
+          className={`bg-background text-primary ${funnel.variable} antialiased`}
         >
           <Header />
           <main className="max-w-11xl mx-auto pt-2 pb-12 sm:px-2">

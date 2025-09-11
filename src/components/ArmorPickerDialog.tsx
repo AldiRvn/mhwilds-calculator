@@ -1,4 +1,5 @@
 import { XIcon } from "lucide-react";
+import Image from "next/image";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Armors } from "@/data/armor";
 import { Armor, ArmorType } from "@/types";
@@ -61,8 +62,15 @@ export const ArmorPickerDialog = ({
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Picker className={cn(!value && "text-placeholder")}>
-          {/* <p className={cn("text-placeholder", value && "text-xs")}>{type}</p> */}
-          {value ? value.name : type}
+          <div className="flex items-center gap-1.5">
+            <Image
+              src={`/${type.toLowerCase()}.svg`}
+              alt={type}
+              width={20}
+              height={20}
+            />
+            {value ? value.name : type}
+          </div>
           {value && (
             <Button
               asChild

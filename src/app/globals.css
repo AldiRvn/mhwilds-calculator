@@ -10,10 +10,12 @@
   --color-content-alt: var(--color-zinc-800);
   --color-divider: var(--color-zinc-700);
   --color-disabled: var(--color-zinc-800);
-  --color-primary: var(--color-white);
+  --color-primary: var(--color-zinc-100);
   --color-secondary: var(--color-zinc-200);
   --color-tertiary: var(--color-zinc-400);
   --color-placeholder: var(--color-zinc-600);
+  
+  --color-input: var(--color-content-alt);
   
   --color-accent: var(--color-orange-400);
   --color-accent-alt: var(--color-cyan-500);
@@ -22,7 +24,7 @@
   --color-success: var(--color-green-500);
   --color-error: var(--color-rose-400);
   --color-warning: var(--color-amber-400);
-
+  
   --spacing-8xl: 88rem;
   --spacing-9xl: 96rem;
   --spacing-10xl: 104rem;

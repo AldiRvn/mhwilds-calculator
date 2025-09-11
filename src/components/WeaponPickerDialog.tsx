@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import { WeaponTypes } from "@/data";
 import { Weapons } from "@/data/weapons";
@@ -23,6 +24,10 @@ import {
   TextInput,
 } from ".";
 import { Dialog, DialogContent, DialogTrigger } from "./ui/Dialog";
+
+function toKebabCase(text: string) {
+  return text.replace(/[\s_]+/g, "-").toLowerCase();
+}
 
 export const WeaponPickerDialog = () => {
   const { w: a, setW: setW } = useBuild();
@@ -77,7 +82,17 @@ export const WeaponPickerDialog = () => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Picker>{a.name}</Picker>
+        <Picker>
+          <div className="flex items-center gap-1.5">
+            <Image
+              src={`/${toKebabCase(type)}.svg`}
+              alt={type}
+              width={20}
+              height={20}
+            />
+            {a.name}
+          </div>
+        </Picker>
       </DialogTrigger>
       <DialogContent
         title="Select Weapon"

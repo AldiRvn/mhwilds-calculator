@@ -12,8 +12,6 @@ const options = Object.entries(WeaponArmorSkills).flatMap(([skill, entry]) => {
   return levels.map<[SkillName, number]>(([level]) => [skill, Number(level)]);
 });
 
-console.log({ options });
-
 type Props = Omit<SelectProps<[SkillName, number] | undefined>, "options"> & {};
 
 export function CharmSkillSelect({

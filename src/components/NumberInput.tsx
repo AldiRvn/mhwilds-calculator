@@ -98,7 +98,7 @@ export function NumberInputTwo({
     <InputContainer className={className} description={description}>
       <div className="group text-secondary hover:text-primary focus-within:text-primary relative flex items-center">
         <input
-          className="border-divider text-primary group-hover:border-primary focus:border-primary disabled:hover:bg-content group disabled:text-placeholder bg-content w-full border p-2 text-sm focus:outline-none"
+          className="border-divider text-primary group-hover:border-primary focus:border-primary disabled:hover:bg-content/30 group disabled:text-placeholder bg-content w-full border p-2 text-sm focus:outline-none"
           type="number"
           onChange={(e) => onChangeValue?.(Number(e.target.value))}
           value={value}
