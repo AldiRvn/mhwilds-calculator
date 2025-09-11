@@ -27,8 +27,11 @@ export const DialogContent = ({
   ...props
 }: DialogContentProps) => (
   <DialogPrimitive.Portal>
-    <DialogPrimitive.Overlay className="fixed inset-0 z-50 flex items-center justify-center bg-black/75">
-      <DialogPrimitive.Content {...props}>
+    <DialogPrimitive.Overlay className="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 flex items-center justify-center bg-black/75">
+      <DialogPrimitive.Content
+        className="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95"
+        {...props}
+      >
         <Card
           className={cn(
             "h-dvh w-[100vw] sm:h-[85dvh] sm:w-4xl sm:max-w-[95vw]",

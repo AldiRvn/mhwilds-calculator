@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
 @theme {
   --font-funnel: "Funnel Sans", "Funnel Sans Fallback";

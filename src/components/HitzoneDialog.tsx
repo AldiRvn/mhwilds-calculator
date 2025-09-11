@@ -1,4 +1,4 @@
-import { CrosshairIcon } from "lucide-react";
+import { CatIcon } from "lucide-react";
 import { useState } from "react";
 import { Monsters } from "@/data/monsters";
 import { useBuild } from "@/store/builder";
@@ -21,9 +21,9 @@ export const HitzoneDialog = () => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button size="sm" variant="secondary" className="text-error">
-          <CrosshairIcon className="size-4" />
-          Hitzones
+        <Button variant="secondary" size="sm" className="text-error">
+          <CatIcon className="size-4" />
+          Monsters
         </Button>
       </DialogTrigger>
       <DialogContent
