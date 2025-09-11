@@ -82,7 +82,7 @@ export const ImportDialog = () => {
         name: string | null | undefined,
         i: number,
         eq: Weapon | Armor,
-        setFn: (i: number, dc?: Decoration) => void,
+        setFn: (i: number) => (dc?: Decoration) => void,
         type: "Weapon" | "Equipment" = "Equipment",
       ) => {
         if (!name) return;
@@ -92,13 +92,13 @@ export const ImportDialog = () => {
         } else if (dc && eq.slots[i] < dc.level) {
           addWarning(`${name} does not fit in ${eq.name} slot ${i + 1}.`);
         }
-        if (dc) setFn(i, dc);
+        if (dc) setFn(i)(dc);
       };
 
       const setDecorations = (
         names: (string | null | undefined)[],
         eq: Weapon | Armor,
-        setFn: (i: number, dc?: Decoration) => void,
+        setFn: (i: number) => (dc?: Decoration) => void,
         type: "Weapon" | "Equipment" = "Equipment",
       ) => {
         names.forEach((n, i) => setDecoration(n, i, eq, setFn, type));
