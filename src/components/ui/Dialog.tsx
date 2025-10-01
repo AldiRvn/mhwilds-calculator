@@ -14,8 +14,7 @@ export const DialogTrigger = DialogPrimitive.Trigger;
 export const DialogTitle = DialogPrimitive.Title;
 
 type DialogContentProps = DialogPrimitive.DialogContentProps & {
-  ref?: React.Ref<HTMLDivElement>;
-  title?: string;
+  title?: React.ReactNode;
   setOpen?: (n: boolean) => void;
 };
 
@@ -34,7 +33,7 @@ export const DialogContent = ({
       >
         <Card
           className={cn(
-            "h-dvh w-[100vw] sm:h-[85dvh] sm:w-4xl sm:max-w-[95vw]",
+            "h-dvh w-[100vw] rounded-none sm:h-[85dvh] sm:w-4xl sm:max-w-[95vw]",
             className,
           )}
         >
@@ -49,7 +48,7 @@ export const DialogContent = ({
                   size="icon"
                   onClick={() => setOpen(false)}
                 >
-                  <XIcon className="h-5 w-5" />
+                  <XIcon className="size-5" />
                 </Button>
               )}
             </div>

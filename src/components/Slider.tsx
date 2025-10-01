@@ -1,11 +1,9 @@
 "use client";
 
 import * as SliderPrimitive from "@radix-ui/react-slider";
-import { Tooltip, TooltipTrigger } from "@radix-ui/react-tooltip";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { SkillName } from "@/types";
 import { cn } from "@/utils";
-import { TooltipContent } from ".";
 
 type SliderProps = SliderPrimitive.SliderProps & {
   skill?: SkillName;
@@ -20,7 +18,7 @@ export const Slider = ({
   value,
   tooltip,
   onValueChange,
-  debounceMs = 100,
+  debounceMs = 200,
   ...props
 }: SliderProps) => {
   const [debouncedValue, setDebouncedValue] = useState(value);
@@ -46,7 +44,7 @@ export const Slider = ({
   }, []);
 
   return (
-    <Tooltip>
+    <div className="flex w-full items-center gap-2">
       <SliderPrimitive.Root
         ref={ref}
         className={cn(
@@ -60,11 +58,9 @@ export const Slider = ({
         <SliderPrimitive.Track className="bg-divider relative h-1 w-full grow overflow-hidden rounded-full">
           <SliderPrimitive.Range className="bg-secondary absolute h-full" />
         </SliderPrimitive.Track>
-        <TooltipTrigger asChild>
-          <SliderPrimitive.Thumb className="bg-primary ring-offset-background focus:bg-accent block size-4 rounded-full focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50" />
-        </TooltipTrigger>
+        <SliderPrimitive.Thumb className="bg-primary ring-offset-background focus:bg-accent block size-4 rounded-full focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50" />
       </SliderPrimitive.Root>
-      {tooltip && <TooltipContent>{tooltip}</TooltipContent>}
-    </Tooltip>
+      <div className="text-sm">{debouncedValue}%</div>
+    </div>
   );
 };

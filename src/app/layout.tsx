@@ -1,8 +1,10 @@
 import { TooltipProvider } from "@radix-ui/react-tooltip";
 import type { Metadata } from "next";
 import { Funnel_Sans } from "next/font/google";
-// import { Footer } from "@/components/Footer";
+import { Toaster } from "sonner";
+import Aside from "@/components/Aside";
 import { Header } from "@/components/Header";
+import { SidebarProvider } from "@/providers/SidebarProvider";
 import "./globals.css";
 
 const funnel = Funnel_Sans({
@@ -24,15 +26,24 @@ export default function RootLayout({
   return (
     <html lang="en">
       <TooltipProvider delayDuration={100}>
-        <body
-          className={`bg-background text-primary ${funnel.variable} antialiased`}
-        >
-          <Header />
-          <main className="max-w-11xl mx-auto pt-2 pb-12 sm:px-2">
-            {children}
-          </main>
-          {/* <Footer /> */}
-        </body>
+        <SidebarProvider>
+          <body
+            className={`text-primary bg-background ${funnel.variable} flex antialiased`}
+          >
+            <Aside />
+            <main className="flex h-screen min-h-screen flex-1 flex-col overflow-y-auto">
+              <Header />
+              {children}
+            </main>
+            {/* <Footer /> */}
+            <Toaster
+              position="bottom-right"
+              expand={true}
+              visibleToasts={3}
+              offset="4rem"
+            />
+          </body>
+        </SidebarProvider>
       </TooltipProvider>
     </html>
   );

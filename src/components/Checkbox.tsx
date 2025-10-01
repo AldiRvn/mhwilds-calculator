@@ -10,7 +10,7 @@ type Props = {
 export function Checkbox({ value, onChangeValue, label, disabled }: Props) {
   return (
     <div
-      className="text-alt my-2 flex cursor-pointer items-center gap-1 text-sm select-none hover:opacity-80 active:opacity-60"
+      className="text-alt my-2 flex cursor-pointer items-center gap-1.5 text-sm select-none hover:opacity-80 active:opacity-60"
       onClick={() => onChangeValue(!value)}
     >
       <input

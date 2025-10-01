@@ -1,17 +1,11 @@
 "use client";
 
 // import { useState } from "react";
-import { CalculatorIcon } from "lucide-react";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import {
   AttacksCard,
   BuffsCard,
-  Button,
   EquipmentCard,
-  ExportDialog,
-  ImportDialog,
-  OverridesDialog,
   // Notice,
   SkillPointCard,
   StatsCard,
@@ -32,30 +26,15 @@ export default function Builder() {
   }, [reset, hasReset]);
 
   return (
-    <div className="max-w-9xl mx-auto flex flex-col gap-2">
-      <div className="flex items-end justify-between gap-2">
-        <div className="flex flex-3 justify-end gap-2">
-          <OverridesDialog />
-          <ImportDialog />
-          <ExportDialog />
-          <Button className="bg-accent-alt group" asChild>
-            <Link href="/calc">
-              <CalculatorIcon className="size-4" />
-              <span className="hidden group-hover:inline-block">
-                Calculator
-              </span>
-            </Link>
-          </Button>
-        </div>
-      </div>
-      <div className="flex flex-col gap-2 lg:flex-row">
-        <div className="flex flex-4 flex-col gap-2">
+    <div className="max-w-9xl mx-auto flex h-screen w-full flex-col gap-2 p-4">
+      <div className="flex flex-col gap-2 xl:flex-row">
+        <div className="flex flex-5 flex-col gap-2">
           {/* <ManualWeaponCard />
           <ManualSkillsCard /> */}
           <EquipmentCard />
           <BuffsCard />
         </div>
-        <div className="flex flex-2 flex-col gap-2">
+        <div className="flex flex-3 flex-col gap-2">
           <StatsCard />
           <SkillPointCard />
           {/* <Card>
@@ -68,7 +47,7 @@ export default function Builder() {
             />
           </Card> */}
         </div>
-        <div className="flex-3">
+        <div className="flex-4">
           <AttacksCard />
         </div>
       </div>

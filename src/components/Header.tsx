@@ -1,16 +1,16 @@
-import Image from "next/image";
-import text from "@/text";
-import { Button } from "./ui/Button";
+import { Sidebar } from "./ui/Sidebar";
 
 export function Header() {
   return (
-    <header>
-      <div className="bg-neutral-400 p-1 text-center text-sm text-black">
+    <header className="sticky top-0 z-1 sm:hidden">
+      {/* <div className="bg-neutral-400 p-1 text-center text-sm text-black">
         {text.HEADER}
-      </div>
+        </div> */}
       <div className="bg-content flex items-center justify-between gap-2 p-3">
-        <h1>MH: Wilds Damage Calculator</h1>
-        <Button asChild variant="text" className="p-0">
+        <div className="flex items-center gap-2">
+          <Sidebar />
+        </div>
+        {/* <Button asChild variant="text" className="p-0">
           <a
             href="https://github.com/chanleyou/mhwilds-calculator"
             target="_blank"
@@ -24,7 +24,7 @@ export function Header() {
               className="invert"
             />
           </a>
-        </Button>
+        </Button> */}
       </div>
     </header>
   );

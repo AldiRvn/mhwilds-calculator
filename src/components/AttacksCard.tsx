@@ -51,7 +51,7 @@ export const AttacksCard = ({ ...props }: Props) => {
           />
         ))}
       </div>
-      <div className="flex items-start justify-end gap-2">
+      <div className="mb-2 flex items-start justify-end gap-2">
         <HitzoneDialog />
         <ComboDialog />
       </div>

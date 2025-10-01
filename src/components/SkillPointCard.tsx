@@ -74,16 +74,13 @@ export const SkillPointCard = ({ className }: { className?: string }) => {
                 )}
               </div>
               {skill.uptime && (
-                <div className="flex items-center justify-between gap-2">
-                  <Slider
-                    skill={k}
-                    value={[uptime[k] ?? 100]}
-                    max={100}
-                    step={1}
-                    onValueChange={(v) => setUptime(k, v[0])}
-                  />
-                  <div className="text-sm">{uptime[k] ?? 100}%</div>
-                </div>
+                <Slider
+                  skill={k}
+                  value={[uptime[k] ?? 100]}
+                  max={100}
+                  step={1}
+                  onValueChange={(v) => setUptime(k, v[0])}
+                />
               )}
             </div>
           );
@@ -166,16 +163,13 @@ export const SkillPointCard = ({ className }: { className?: string }) => {
                 )}
               </Tooltip>
               {skill.uptime && (
-                <div className="flex items-center justify-between gap-2">
-                  <Slider
-                    skill={k}
-                    value={[uptime[k] ?? 100]}
-                    max={100}
-                    step={1}
-                    onValueChange={(v) => setUptime(k, v[0])}
-                  />
-                  <div className="text-sm">{uptime[k] ?? 100}%</div>
-                </div>
+                <Slider
+                  skill={k}
+                  value={[uptime[k] ?? 100]}
+                  max={100}
+                  step={1}
+                  onValueChange={(v) => setUptime(k, v[0])}
+                />
               )}
             </div>
           );
@@ -223,16 +217,13 @@ export const SkillPointCard = ({ className }: { className?: string }) => {
                 </div>
               </div>
               {skill.uptime && (
-                <div className="flex items-center justify-between gap-2">
-                  <Slider
-                    skill={k}
-                    value={[uptime[k] ?? 100]}
-                    max={100}
-                    step={1}
-                    onValueChange={(v) => setUptime(k, v[0])}
-                  />
-                  <div className="text-sm">{uptime[k] ?? 100}%</div>
-                </div>
+                <Slider
+                  skill={k}
+                  value={[uptime[k] ?? 100]}
+                  max={100}
+                  step={1}
+                  onValueChange={(v) => setUptime(k, v[0])}
+                />
               )}
             </div>
           );

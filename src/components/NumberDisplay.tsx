@@ -13,7 +13,7 @@ export function NumberDisplay({ label, className, children, ...props }: Props) {
       )}
       {...props}
     >
-      <p>{label}</p>
+      <label className="text-secondary">{label}</label>
       <div className="text-regular">{children}</div>
     </div>
   );

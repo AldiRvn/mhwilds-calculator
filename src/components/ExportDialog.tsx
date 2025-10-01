@@ -1,13 +1,15 @@
 "use client";
 
-import { CopyIcon } from "lucide-react";
-import { useMemo, useRef, useState } from "react";
+import { SaveIcon } from "lucide-react";
+import { useMemo, useState } from "react";
 import { CombinedBuffs } from "@/data";
 import { useBuild } from "@/store/builder";
 import text from "@/text";
 import { Notice } from "./Notice";
 import { Button } from "./ui/Button";
 import { Dialog, DialogContent, DialogTrigger } from "./ui/Dialog";
+import { SidebarButton } from "./ui/SidebarButton";
+import { toast } from "./ui/Toast";
 
 export const ExportDialog = () => {
   const {
@@ -30,7 +32,6 @@ export const ExportDialog = () => {
   } = useBuild();
 
   const [open, setOpen] = useState(false);
-  const [copied, setCopied] = useState(false);
 
   const data = useMemo(
     () =>
@@ -96,23 +97,15 @@ export const ExportDialog = () => {
     ],
   );
 
-  const interval = useRef<NodeJS.Timeout>(undefined);
-
   const copy = () => {
     navigator.clipboard.writeText(data);
-    setCopied(true);
-    interval.current = setTimeout(() => {
-      setCopied(false);
-    }, 3000);
+    toast({ title: "Copied to clipboard.", type: "success" });
   };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="bg-accent-alt group h-9.5">
-          <CopyIcon className="size-4" />
-          <span className="hidden group-hover:inline-block">Export</span>
-        </Button>
+        <SidebarButton icon={SaveIcon} text="Export" />
       </DialogTrigger>
       <DialogContent title="Export" setOpen={setOpen} className="sm:h-fit">
         <Notice>{text.EXPORT_NOTICE}</Notice>
@@ -123,9 +116,8 @@ export const ExportDialog = () => {
           readOnly
         />
         <div className="flex justify-end gap-2">
-          {copied && <Notice variant="success">Copied to clipboard.</Notice>}
           <Button onClick={copy}>
-            <CopyIcon className="size-4" /> Copy
+            <SaveIcon className="size-4" /> Copy
           </Button>
         </div>
       </DialogContent>

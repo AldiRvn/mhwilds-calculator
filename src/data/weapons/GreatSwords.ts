@@ -437,4 +437,16 @@ export const GreatSwords: MeleeWeapon[] = [
     handicraft: [50, 0, 0, 0],
     skills: { Focus: 2, "Convert Thunder Resistance": 1 },
   },
+  {
+    type: "Great Sword",
+    name: "True Shadowbringer",
+    rarity: 8,
+    attack: 220,
+    element: { type: "Dragon", value: 600 },
+    affinity: 0,
+    slots: [3, 2, 1],
+    sharpness: [70, 70, 60, 50, 40, 60, 0],
+    handicraft: [50, 0, 0, 0],
+    skills: { Darkside: 1 },
+  },
 ];

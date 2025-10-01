@@ -15,6 +15,8 @@ import { importSchema } from "@/zod";
 import { Notice } from "./Notice";
 import { Button } from "./ui/Button";
 import { Dialog, DialogContent, DialogTrigger } from "./ui/Dialog";
+import { SidebarButton } from "./ui/SidebarButton";
+import { toast } from "./ui/Toast";
 
 export const ImportDialog = () => {
   const {
@@ -41,34 +43,10 @@ export const ImportDialog = () => {
   } = useBuild();
 
   const [open, setOpen] = useState(false);
-  const [warnings, setWarnings] = useState<string[]>([]);
-  const [error, setError] = useState("");
   const [data, setData] = useState("");
-  const [success, setSuccess] = useState(false);
-
-  const addWarning = (warning: string) => setWarnings((w) => [...w, warning]);
-
-  const variant = useMemo(() => {
-    if (success && warnings.length > 0) return "warning";
-    if (success && warnings.length === 0) return "success";
-    if (error) return "error";
-    return undefined;
-  }, [success, warnings, error]);
-
-  const message = useMemo(() => {
-    if (error) return error;
-    if (success && warnings.length > 0)
-      return ["Build imported with the following issues:", ...warnings].join(
-        "\n",
-      );
-    if (success && warnings.length === 0) return "Build imported.";
-    return undefined;
-  }, [success, warnings, error]);
 
   const process = useCallback(() => {
-    setError("");
-    setSuccess(false);
-    setWarnings([]);
+    const warnings: string[] = [];
 
     try {
       const result = importSchema.safeParse(JSON.parse(data));
@@ -88,9 +66,11 @@ export const ImportDialog = () => {
         if (!name) return;
         const dc = Decorations.find((d) => d.name === name && d.type === type);
         if (!dc) {
-          addWarning(`${name} not found.`);
+          warnings.push(`'${name}' not found.`);
         } else if (dc && eq.slots[i] < dc.level) {
-          addWarning(`${name} does not fit in ${eq.name} slot ${i + 1}.`);
+          warnings.push(
+            `'${name}' does not fit in '${eq.name}' slot ${i + 1}.`,
+          );
         }
         if (dc) setFn(i)(dc);
       };
@@ -107,7 +87,7 @@ export const ImportDialog = () => {
       if (d.helm) {
         const helm = Armors.find((a) => a.name === d.helm && a.type === "Helm");
         if (!helm) {
-          addWarning(`${d.helm} not found.`);
+          warnings.push(`'${d.helm}' not found.`);
         } else {
           setHelm(helm);
           if (d.helmSlots) {
@@ -119,7 +99,7 @@ export const ImportDialog = () => {
       if (d.body) {
         const body = Armors.find((a) => a.name === d.body && a.type === "Body");
         if (!body) {
-          addWarning(`${d.body} not found.`);
+          warnings.push(`'${d.body}' not found.`);
         } else {
           setBody(body);
           if (d.bodySlots) {
@@ -131,7 +111,7 @@ export const ImportDialog = () => {
       if (d.arms) {
         const arms = Armors.find((a) => a.name === d.arms && a.type === "Arms");
         if (!arms) {
-          addWarning(`${d.arms} not found.`);
+          warnings.push(`'${d.arms}' not found.`);
         } else {
           setArms(arms);
           if (d.armsSlots) {
@@ -145,7 +125,7 @@ export const ImportDialog = () => {
           (a) => a.name === d.waist && a.type === "Waist",
         );
         if (!waist) {
-          addWarning(`${d.waist} not found.`);
+          warnings.push(`'${d.waist}' not found.`);
         } else {
           setWaist(waist);
           if (d.waistSlots) {
@@ -157,7 +137,7 @@ export const ImportDialog = () => {
       if (d.legs) {
         const legs = Armors.find((a) => a.name === d.legs && a.type === "Legs");
         if (!legs) {
-          addWarning(`${d.legs} not found.`);
+          warnings.push(`'${d.legs}' not found.`);
         } else {
           setLegs(legs);
           if (d.legsSlots) {
@@ -169,7 +149,7 @@ export const ImportDialog = () => {
       if (d.charm) {
         const charm = Charms.find((c) => c.name === d.charm);
         if (charm) setCharm(charm);
-        else addWarning(`${d.charm} not found.`);
+        else warnings.push(`'${d.charm}' not found.`);
       }
 
       const w = Object.values(Weapons)
@@ -177,7 +157,7 @@ export const ImportDialog = () => {
         .find((w) => w.name === d.weapon.name && w.type === d.weapon.type);
 
       if (!w) {
-        addWarning(`${d.weapon.name} not found.`);
+        warnings.push(`'${d.weapon.name}' not found.`);
       } else {
         setW(w);
 
@@ -196,23 +176,38 @@ export const ImportDialog = () => {
         Object.entries(d.buffs).forEach(([key, value]) => {
           const buff = CombinedBuffs[key]?.levels[value - 1];
           if (buff) setOtherBuff(key, buff);
-          else setWarnings((w) => [...w, `Buff ${key} ${value} not found.`]);
+          else warnings.push(`Buff '${key} ${value}' not found.`);
         });
       }
 
       if (d.uptime) setUptimes(d.uptime);
 
-      setSuccess(true);
+      if (warnings.length === 0) {
+        toast({ title: "Build imported.", type: "success" });
+      } else {
+        toast({
+          type: "warning",
+          title: "Build imported with issues:",
+          description: (
+            <ul className="text-tertiary list-disc pl-4 text-sm">
+              {warnings.map((w) => (
+                <li key={w}>{w}</li>
+              ))}
+            </ul>
+          ),
+        });
+      }
     } catch (e: unknown) {
-      if (e instanceof SyntaxError) setError("Invalid JSON.");
+      let error = "";
+
+      if (e instanceof SyntaxError) error = "Invalid JSON.";
       else if (e instanceof ZodError) {
-        console.error(e);
-        setError(
-          Object.entries(e.flatten().fieldErrors)
-            .map(([k, v]) => `${k}: ${v}`)
-            .join(", "),
-        );
-      } else setError("Invalid data.");
+        error = Object.entries(e.flatten().fieldErrors)
+          .map(([k, v]) => `${k}: ${v}`)
+          .join(" ");
+      } else error = "Invalid data.";
+
+      toast({ title: error, type: "error" });
     }
   }, [
     data,
@@ -238,17 +233,10 @@ export const ImportDialog = () => {
     setUptimes,
   ]);
 
-  useEffect(() => {
-    if (!open) setSuccess(false);
-  }, [open]);
-
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="secondary" className="text-accent-alt group">
-          <DownloadIcon className="size-4" />
-          <span className="hidden group-hover:inline-block">Import</span>
-        </Button>
+        <SidebarButton icon={DownloadIcon} text="Import" />
       </DialogTrigger>
       <DialogContent title="Import" className="sm:h-fit" setOpen={setOpen}>
         <Notice>{text.EXPORT_NOTICE}</Notice>
@@ -260,7 +248,6 @@ export const ImportDialog = () => {
           placeholder="Paste your build here..."
         />
         <div className="flex justify-end gap-2">
-          {message && <Notice variant={variant}>{message}</Notice>}
           <Button onClick={process}>
             <DownloadIcon className="size-4" /> Import
           </Button>

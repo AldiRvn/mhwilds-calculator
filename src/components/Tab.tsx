@@ -13,7 +13,7 @@ export function Tab<T>({
   setValue: (option: T) => void;
 }) {
   return (
-    <div className="border-divider flex border-b">
+    <div className="border-divider flex border p-0.5">
       {options.map((o) => (
         <Button
           // variant="text"
@@ -22,10 +22,8 @@ export function Tab<T>({
           variant="secondary"
           key={labelFn(o)}
           className={cn(
-            "flex-1",
-            value === o
-              ? "text-accent border-0 border-b-2 border-solid font-semibold"
-              : "text-primary border-none",
+            "flex-1 rounded-none border-none",
+            value === o ? "bg-content-alt text-primary" : "text-tertiary",
           )}
         >
           {labelFn(o)}

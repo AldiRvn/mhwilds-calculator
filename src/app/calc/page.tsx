@@ -1,15 +1,11 @@
 "use client";
 
 // import { useState } from "react";
-import { WrenchIcon } from "lucide-react";
-import Link from "next/link";
 import {
   AttacksCard,
   BuffsCard,
-  Button,
   ManualSkillsCard,
   ManualWeaponCard,
-  Notice,
   // Notice,
   SkillPointCard,
   StatsCard,
@@ -18,18 +14,8 @@ import {
 
 export default function Calculator() {
   return (
-    <div className="max-w-9xl mx-auto flex flex-col gap-2">
-      <div className="flex items-end justify-between gap-2">
-        <div className="flex flex-1 justify-end gap-2">
-          <Button variant="secondary" className="text-accent-alt" asChild>
-            <Link href="/">
-              <WrenchIcon className="size-4" />
-              Build Planner
-            </Link>
-          </Button>
-        </div>
-      </div>
-      <div className="flex flex-col gap-2 lg:flex-row">
+    <div className="max-w-9xl mx-auto flex w-full flex-col gap-2 p-4">
+      <div className="flex flex-col gap-2 xl:flex-row">
         <div className="flex flex-4 flex-col gap-2">
           <ManualWeaponCard />
           <ManualSkillsCard />

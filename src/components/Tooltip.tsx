@@ -7,18 +7,30 @@ interface TooltipContentProps extends TooltipPrimitive.TooltipContentProps {
   ref?: React.RefObject<HTMLDivElement>;
 }
 
+export const Tooltip = TooltipPrimitive.Root;
+
+export const TooltipTrigger = TooltipPrimitive.Trigger;
+
+export const TooltipArrow = ({
+  className,
+  ...props
+}: TooltipPrimitive.TooltipArrowProps) => {
+  return (
+    <TooltipPrimitive.Arrow
+      className={cn("h-1.5 w-2 fill-zinc-100", className)}
+      {...props}
+    />
+  );
+};
+
 export const TooltipContent = ({
-  ref,
-  sideOffset,
   className,
   ...props
 }: TooltipContentProps) => {
   return (
     <TooltipPrimitive.Content
-      ref={ref}
-      sideOffset={sideOffset}
       className={cn(
-        "animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 text-background border-divider data-[state=closed]:zoom-out-95 z-50 max-w-[90vw] border bg-zinc-200 px-2 py-1.5 text-sm shadow-md duration-100",
+        "animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 text-background data-[state=closed]:zoom-out-95 z-50 max-w-[90vw] bg-zinc-100 px-2 py-1.5 text-sm drop-shadow duration-100",
         className,
       )}
       {...props}

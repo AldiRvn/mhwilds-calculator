@@ -5,16 +5,16 @@
   --font-funnel: "Funnel Sans", "Funnel Sans Fallback";
   --font-sans: var(--font-funnel), sans-serif;
 
-  --color-background: var(--color-black);
+  --color-background: var(--color-zinc-950);
   --color-content: var(--color-zinc-900);
   --color-content-alt: var(--color-zinc-800);
   --color-divider: var(--color-zinc-700);
   --color-disabled: var(--color-zinc-800);
-  --color-primary: var(--color-zinc-100);
+  --color-primary: var(--color-white);
   --color-secondary: var(--color-zinc-200);
   --color-tertiary: var(--color-zinc-400);
   --color-placeholder: var(--color-zinc-600);
-  
+
   --color-input: var(--color-content-alt);
   
   --color-accent: var(--color-orange-400);
@@ -23,13 +23,14 @@
   --color-info: var(--color-blue-300);
   --color-success: var(--color-green-500);
   --color-error: var(--color-rose-400);
-  --color-warning: var(--color-amber-400);
+  --color-warning: var(--color-amber-500);
   
   --spacing-8xl: 88rem;
   --spacing-9xl: 96rem;
   --spacing-10xl: 104rem;
   --spacing-11xl: 112rem;
 }
+
 
 h1 {
   @apply text-base;
@@ -41,6 +42,11 @@ h2 {
 
 h3 {
   @apply text-xs;
+}
+
+/* Prevent SVGs from shrinking */
+svg {
+  @apply shrink-0;
 }
 
 

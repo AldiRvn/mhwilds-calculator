@@ -253,6 +253,12 @@ export const WeaponSkills: Record<SkillName, Skill | SkillWeaponGroup> = {
       5: { name: "Critical Eye 5", affinity: 20 },
     },
   },
+  Darkside: {
+    uptime: true,
+    levels: {
+      1: { name: "Darkside 1", attackMul: 1.1 },
+    },
+  },
   ["Dragon Attack"]: {
     levels: {
       1: { name: "Dragon Attack 1", elementType: "Dragon", element: 40 },

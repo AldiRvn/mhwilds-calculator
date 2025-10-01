@@ -25,7 +25,10 @@ export const TableHeadRow = ({
 }: React.ComponentProps<"tr">) => {
   return (
     <tr
-      className={cn("border-tertiary border-b font-medium", className)}
+      className={cn(
+        "text-tertiary border-content-alt border-b text-xs",
+        className,
+      )}
       {...props}
     >
       {children}

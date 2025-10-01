@@ -92,22 +92,19 @@ export const BuffsCard = () => {
       {(!hideBuffs || uptime.Frenzy > 0) && (
         <div className="flex flex-col">
           <label className="text-sm">Frenzy</label>
-          <div className="flex items-center justify-between gap-2">
-            <Slider
-              value={[uptime["Frenzy"] ?? 0]}
-              max={100}
-              step={1}
-              onValueChange={(v) => {
-                if (v[0] > 0) {
-                  setOtherBuff("Frenzy", CombinedBuffs.Frenzy.levels[0]);
-                } else {
-                  setOtherBuff("Frenzy", undefined);
-                }
-                setUptime("Frenzy", v[0]);
-              }}
-            />
-            <div className="text-sm">{uptime["Frenzy"] ?? 0}%</div>
-          </div>
+          <Slider
+            value={[uptime["Frenzy"] ?? 0]}
+            max={100}
+            step={1}
+            onValueChange={(v) => {
+              if (v[0] > 0) {
+                setOtherBuff("Frenzy", CombinedBuffs.Frenzy.levels[0]);
+              } else {
+                setOtherBuff("Frenzy", undefined);
+              }
+              setUptime("Frenzy", v[0]);
+            }}
+          />
         </div>
       )}
       {showUptimeSection && (
@@ -126,22 +123,19 @@ export const BuffsCard = () => {
                 // />
                 <div key={k} className="flex flex-col">
                   <label className="text-sm">{s.name}</label>
-                  <div className="flex items-center justify-between gap-2">
-                    <Slider
-                      value={[uptime[k] ?? 0]}
-                      max={100}
-                      step={1}
-                      onValueChange={(v) => {
-                        if (v[0] > 0) {
-                          setOtherBuff(k, CombinedBuffs[k].levels[0]);
-                        } else {
-                          setOtherBuff(k, undefined);
-                        }
-                        setUptime(k, v[0]);
-                      }}
-                    />
-                    <div className="text-sm">{uptime[k] ?? 0}%</div>
-                  </div>
+                  <Slider
+                    value={[uptime[k] ?? 0]}
+                    max={100}
+                    step={1}
+                    onValueChange={(v) => {
+                      if (v[0] > 0) {
+                        setOtherBuff(k, CombinedBuffs[k].levels[0]);
+                      } else {
+                        setOtherBuff(k, undefined);
+                      }
+                      setUptime(k, v[0]);
+                    }}
+                  />
                 </div>
               );
             })}

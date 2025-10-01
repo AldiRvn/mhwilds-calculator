@@ -1,4 +1,4 @@
-import { WrenchIcon, XIcon } from "lucide-react";
+import { SettingsIcon, WrenchIcon, XIcon } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { Sharpnesses } from "@/data";
 import {
@@ -11,6 +11,7 @@ import { useBuild, useComputed } from "@/store/builder";
 import { isRanged } from "@/types";
 import { Button, Notice, Select } from ".";
 import { Dialog, DialogContent, DialogTrigger } from "./ui/Dialog";
+import { SidebarButton } from "./ui/SidebarButton";
 
 export const OverridesDialog = () => {
   const { manualSkills, manualSharpness, setManualSharpness, setManualSkills } =
@@ -30,23 +31,17 @@ export const OverridesDialog = () => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button
-          variant={length > 0 ? "primary" : "secondary"}
-          className="group"
-          size="sm"
-        >
-          <WrenchIcon className="size-4"></WrenchIcon>
-          <span className="hidden group-hover:inline-block">Overrides</span>
-          {length > 0 && <span>({length})</span>}
-        </Button>
+        <SidebarButton
+          icon={SettingsIcon}
+          text={`Overrides${length > 0 ? ` (${length})` : ""}`}
+        />
       </DialogTrigger>
       <DialogContent title="Overrides" className="sm:h-fit" setOpen={setOpen}>
         {showNotice && (
           <Notice>
             <div className="flex justify-between gap-2">
               <p className="flex-1">
-                You can manually override weapon sharpness and skill levels
-                here.
+                You can manually set weapon sharpness and skill levels here.
               </p>
               <Button
                 variant="text"
