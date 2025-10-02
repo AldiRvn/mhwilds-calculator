@@ -426,4 +426,15 @@ export const SwordAndShields: MeleeWeapon[] = [
     handicraft: [50, 0, 0, 0],
     skills: { "Offensive Guard": 2, "Convert Thunder Resistance": 1 },
   },
+  {
+    type: "Sword and Shield",
+    name: "True Omega's Sword",
+    rarity: 8,
+    attack: 220,
+    affinity: 10,
+    slots: [3, 2, 1],
+    sharpness: [100, 20, 60, 20, 80, 70, 0],
+    handicraft: [50, 0, 0, 0],
+    skills: { "Synthetic Shield": 1, "Guard Up": 3 },
+  },
 ];

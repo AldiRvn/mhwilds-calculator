@@ -444,4 +444,16 @@ export const InsectGlaives: MeleeWeapon[] = [
     handicraft: [50, 0, 0, 0],
     skills: { "Speed Sharpening": 2, "Convert Thunder Resistance": 1 },
   },
+  {
+    type: "Insect Glaive",
+    name: "True Omega's Rod",
+    rarity: 8,
+    attack: 210,
+    element: { type: "Fire", value: 230 },
+    affinity: 10,
+    slots: [3, 2, 1],
+    sharpness: [100, 20, 60, 20, 80, 70, 0],
+    handicraft: [50, 0, 0, 0],
+    skills: { Synergy: 1 },
+  },
 ];

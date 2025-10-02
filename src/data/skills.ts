@@ -72,6 +72,7 @@ export const UnsupportedWeaponSkills: Record<SkillName, Skill> = {
   Slugger: skill(3),
   "Speed Sharpening": skill(2),
   "Stamina Thief": skill(3),
+  "Synthetic Shield": skill(1),
   "Whiteflame Torrent": skill(1),
 };
 
@@ -466,6 +467,12 @@ export const WeaponSkills: Record<SkillName, Skill | SkillWeaponGroup> = {
   ["Spread/Power Shots"]: {
     levels: {
       1: { name: "Spread/Power Shots 1", rawMul: 1.05 },
+    },
+  },
+  Synergy: {
+    uptime: true,
+    levels: {
+      1: { name: "Synergy 1", affinity: 15 }, // 25 with Omega 4-pc?
     },
   },
   ["Tetrad Shot"]: {
@@ -1006,6 +1013,13 @@ export const SeriesSkills: Record<SkillName, SeriesSkill> = {
     levels: {
       2: { name: "Razor's Edge I" },
       4: { name: "Razor's Edge II", attackMul: 1.05 },
+    },
+  },
+  "Soul of the Dark Knight": {
+    uptime: true,
+    levels: {
+      2: { name: "Dark Arts", elementMul: 1.2 },
+      4: { name: "The Blackest Knight", elementMul: 1.2 },
     },
   },
   ["Xu Wu's Vigor"]: {
