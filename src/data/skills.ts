@@ -556,7 +556,7 @@ export const UnsupportedArmorSkills: Record<SkillName, Skill> = {
   ["Botanist"]: skill(4),
   ["Cliffhanger"]: skill(1),
   ["Constitution"]: skill(5),
-  ["Defense Boost"]: skill(3),
+  ["Defense Boost"]: skill(7),
   ["Divine Blessing"]: skill(3),
   ["Dragon Resistance"]: skill(3),
   ["Earplugs"]: skill(3),
