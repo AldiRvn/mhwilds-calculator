@@ -10,7 +10,7 @@ This project is currently in maintenance mode, aka I've stopped actively working
 
 ### Todos
 
-- [ ] Ver. 1.030 Equipment
+- [x] Ver. 1.030 Equipment
 - [ ] Convert Thunder Resistance
 - [ ] Akuma
 

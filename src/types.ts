@@ -235,6 +235,9 @@ export type Buff = BuffValues & {
   sharpnesses?: Sharpness[];
   bludgeonerAttackMul?: number;
   cornpopperMul?: number;
+  localAffinity?: number;
+  globalAttack?: number;
+  synergyAffinity?: number;
 };
 
 export type BuffGroup = {

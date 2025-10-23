@@ -143,9 +143,20 @@ export const Buffs: Record<string, BuffGroup> = {
   },
 };
 
-export const SliderBuffs: Record<string, BuffGroup> = {
+export const SlickedBladeBuffs: Record<string, BuffGroup> = {
   Wet: { name: "Wet", levels: [{ name: "Wet" }] },
   Bubbleblight: { name: "Bubbleblight", levels: [{ name: "Bubbleblight" }] },
+};
+
+export const OmegaResonanceBuffs: Record<string, BuffGroup> = {
+  LocalResonance: {
+    name: "Local Resonance",
+    levels: [{ name: "Local Resonance" }],
+  },
+  GlobalResonance: {
+    name: "Global Resonance",
+    levels: [{ name: "Global Resonance" }],
+  },
 };
 
 export const FieldBuffs: Record<string, BuffGroup> = {
@@ -204,7 +215,8 @@ export const HuntingHornBuffs: Record<string, BuffGroup> = {
 // TODO: make TypeScript complain if two buffs share a key
 export const CombinedBuffs: Record<string, BuffGroup> = {
   ...Buffs,
-  ...SliderBuffs,
+  ...SlickedBladeBuffs,
+  ...OmegaResonanceBuffs,
   ...WeaponBuffs,
   ...FieldBuffs,
   ...HuntingHornBuffs,

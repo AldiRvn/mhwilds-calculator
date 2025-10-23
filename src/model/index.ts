@@ -82,6 +82,8 @@ export const calculateAffinity = ({
     if (buffs.Frenzy) bonuses.push(b?.frenzy?.affinity);
     if (buffs.Wet) bonuses.push(b?.wet?.affinity);
     if (buffs.Bubbleblight) bonuses.push(b?.bubbleblight?.affinity);
+    if (buffs.LocalResonance) bonuses.push(b?.localAffinity);
+    if (buffs.Synergy) bonuses.push(b?.synergyAffinity);
   });
 
   const n = sum(
@@ -120,9 +122,8 @@ export const calculateAttack = (
       multipliers.push(b?.frenzy?.attackMul);
       bonuses.push(b?.frenzy?.attack);
     }
-    if (buffs.Burst) {
-      bonuses.push(b?.burst?.attack);
-    }
+    if (buffs.Burst) bonuses.push(b?.burst?.attack);
+    if (buffs.GlobalResonance) bonuses.push(b?.globalAttack);
   });
 
   return calculate(

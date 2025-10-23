@@ -5,7 +5,8 @@ import {
   CombinedBuffs,
   FieldBuffs,
   HuntingHornBuffs,
-  SliderBuffs,
+  OmegaResonanceBuffs,
+  SlickedBladeBuffs,
   WeaponBuffs,
 } from "@/data";
 import { useBuild, useComputed } from "@/store/builder";
@@ -31,11 +32,15 @@ export const BuffsCard = () => {
     return Object.keys(otherBuffs).some((k) => WeaponBuffs[k]);
   }, [hideBuffs, otherBuffs, w.type]);
 
-  const showUptimeSection = useMemo(() => {
+  const showSlickedBladeSection = useMemo(() => {
     if (skillPoints["Slicked Blade"] > 0) return true;
     return false;
-    // return Object.keys(SliderBuffs).some((k) => uptime[k] && uptime[k] > 0);
   }, [skillPoints]);
+
+  const showOmegaResonanceSection = useMemo(() => {
+    if (buffs["Omega Resonance"]) return true;
+    return false;
+  }, [buffs]);
 
   const showItemsSection = useMemo(() => {
     if (!hideBuffs) return true;
@@ -107,40 +112,53 @@ export const BuffsCard = () => {
           />
         </div>
       )}
-      {showUptimeSection && (
-        <>
-          <div className="grid grid-cols-2 gap-4">
-            {Object.entries(SliderBuffs).map(([k, s]) => {
-              return (
-                // <NumberInputTwo
-                //   key={k}
-                //   label={s.name}
-                //   value={uptime[k] ?? 0}
-                //   onChangeValue={(v) => setUptime(k, v)}
-                //   min={0}
-                //   max={100}
-                //   step={10}
-                // />
-                <div key={k} className="flex flex-col">
-                  <label className="text-sm">{s.name}</label>
-                  <Slider
-                    value={[uptime[k] ?? 0]}
-                    max={100}
-                    step={1}
-                    onValueChange={(v) => {
-                      if (v[0] > 0) {
-                        setOtherBuff(k, CombinedBuffs[k].levels[0]);
-                      } else {
-                        setOtherBuff(k, undefined);
-                      }
-                      setUptime(k, v[0]);
-                    }}
-                  />
-                </div>
-              );
-            })}
-          </div>
-        </>
+      {showSlickedBladeSection && (
+        <div className="grid grid-cols-2 gap-4">
+          {Object.entries(SlickedBladeBuffs).map(([k, s]) => {
+            return (
+              <div key={k} className="flex flex-col">
+                <label className="text-sm">{s.name}</label>
+                <Slider
+                  value={[uptime[k] ?? 0]}
+                  max={100}
+                  step={1}
+                  onValueChange={(v) => {
+                    if (v[0] > 0) {
+                      setOtherBuff(k, CombinedBuffs[k].levels[0]);
+                    } else {
+                      setOtherBuff(k, undefined);
+                    }
+                    setUptime(k, v[0]);
+                  }}
+                />
+              </div>
+            );
+          })}
+        </div>
+      )}
+      {showOmegaResonanceSection && (
+        <div className="grid grid-cols-2 gap-4">
+          {Object.entries(OmegaResonanceBuffs).map(([k, s]) => {
+            return (
+              <div key={k} className="flex flex-col">
+                <label className="text-sm">{s.name}</label>
+                <Slider
+                  value={[uptime[k] ?? 0]}
+                  max={50}
+                  step={1}
+                  onValueChange={(v) => {
+                    if (v[0] > 0) {
+                      setOtherBuff(k, CombinedBuffs[k].levels[0]);
+                    } else {
+                      setOtherBuff(k, undefined);
+                    }
+                    setUptime(k, v[0]);
+                  }}
+                />
+              </div>
+            );
+          })}
+        </div>
       )}
       {showWeaponSection && (
         <>

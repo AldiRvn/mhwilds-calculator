@@ -1008,6 +1008,17 @@ export const SeriesSkills: Record<SkillName, SeriesSkill> = {
       4: { name: "Azure Bolt II", affinity: 15 },
     },
   },
+  "Omega Resonance": {
+    levels: {
+      2: { name: "Resonance I", localAffinity: 20, globalAttack: 10 },
+      4: {
+        name: "Resonance II",
+        localAffinity: 40,
+        globalAttack: 20,
+        synergyAffinity: 10,
+      },
+    },
+  },
   "Seregios's Tenacity": {
     uptime: true,
     levels: {

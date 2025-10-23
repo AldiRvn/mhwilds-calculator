@@ -557,15 +557,16 @@ export const useComputed = () => {
     ? calculateStatus(weapon.status.value, weapon.status.type, buffs)
     : 0;
 
-  // Uptime Binary Tree
+  // Uptime B-Tree
   type Node = {
     skills: SkillName[];
     weight: number;
-    left?: Node;
-    right?: Node;
+    children: Node[];
   };
 
-  const entries = Object.entries(uptime);
+  const entries = Object.entries(uptime).filter(
+    ([k]) => k !== "LocalResonance" && k !== "GlobalResonance",
+  );
 
   type Weight = { buffs: Record<string, Buff>; weight: number };
   const weights: Weight[] = [];
@@ -575,6 +576,7 @@ export const useComputed = () => {
     skills: SkillName[] = [],
     weight: number = 100,
   ): Node => {
+    // if last child, build weights
     if (!entries[i]) {
       weights.push({
         buffs: produce(buffs, (d) => {
@@ -584,7 +586,7 @@ export const useComputed = () => {
         }),
         weight,
       });
-      return { skills, weight };
+      return { skills, weight, children: [] };
     }
 
     const left = node(
@@ -594,10 +596,28 @@ export const useComputed = () => {
     );
     const right = node(i + 1, skills, weight - left.weight);
 
-    return { skills, weight, left, right };
+    const children: Node[] = [];
+
+    if (left.weight > 0) children.push(left);
+    if (right.weight > 0) children.push(right);
+
+    return { skills: skills, weight, children };
   };
 
-  const head = node(0);
+  // TODO: refactor this to support not just Omega Resonance
+  const local = uptime["LocalResonance"] ?? 0;
+  const global = uptime["GlobalResonance"] ?? 0;
+  const remainder = 100 - local - global;
+
+  const head: Node = {
+    skills: [],
+    weight: 100,
+    children: [],
+  };
+
+  if (local > 0) head.children.push(node(0, ["LocalResonance"], local));
+  if (global > 0) head.children.push(node(0, ["GlobalResonance"], global));
+  if (remainder > 0) head.children.push(node(0, [], remainder));
 
   // can be slightly off 100 due to JavaScript floating point math
   const totalWeight = weights.reduce((acc, w) => acc + w.weight, 0);

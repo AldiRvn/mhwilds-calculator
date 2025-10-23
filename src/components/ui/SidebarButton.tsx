@@ -29,8 +29,6 @@ export const SidebarButton = ({
   const pathname = usePathname();
   const { compact } = useSidebar();
 
-  console.log(pathname, href, pathname === href);
-
   const Icon = icon;
 
   return (
