@@ -17,14 +17,13 @@ import { Button } from "./ui/Button";
 import { Dialog, DialogContent, DialogTrigger } from "./ui/Dialog";
 
 export const ArtianDialog = () => {
-  const { weapon, artian, setArtianType, setArtianInfusion, setArtianUpgrade } =
-    useBuild((s) => ({
-      weapon: s.w,
-      artian: s.artian,
-      setArtianType: s.setArtianType,
-      setArtianInfusion: s.setArtianInfusion,
-      setArtianUpgrade: s.setArtianUpgrade,
-    }));
+  const {
+    w: weapon,
+    artian,
+    setArtianType,
+    setArtianInfusion,
+    setArtianUpgrade,
+  } = useBuild();
   const [open, setOpen] = useState(false);
 
   const combined = useMemo(
