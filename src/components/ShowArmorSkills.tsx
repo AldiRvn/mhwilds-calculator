@@ -10,7 +10,7 @@ export function ShowArmorSkills({ skills }: ArmorSkillsProps) {
     return (
         <div className="grid gap-2 sm:grid-cols-3">
             {Object.entries(skills ?? {}).map(([name, level]) => (
-                <label className="text-secondary">{name} [{level}]</label>
+                <label key={name} className="text-secondary">{name} [{level}]</label>
             ))}
         </div>
     );
