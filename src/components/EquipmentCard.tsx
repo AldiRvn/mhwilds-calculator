@@ -7,6 +7,7 @@ import {
   WeaponPickerDialog,
 } from "@/components";
 import { useBuild } from "@/store/builder";
+import { ShowArmorSkills } from "./ShowArmorSkills";
 
 export const EquipmentCard = () => {
   const {
@@ -79,6 +80,7 @@ export const EquipmentCard = () => {
       <div></div>
       <p className="text-sm">Armor</p>
       <ArmorPickerDialog type="Helm" value={helm} setValue={setHelm} />
+      <ShowArmorSkills skills={helm?.skills}></ShowArmorSkills>
       <div className="grid gap-2 sm:grid-cols-3">
         {[0, 1, 2].map((i) => {
           // if (!helm?.slots[i]) return;
@@ -93,6 +95,7 @@ export const EquipmentCard = () => {
         })}
       </div>
       <ArmorPickerDialog type="Body" value={body} setValue={setBody} />
+      <ShowArmorSkills skills={body?.skills}></ShowArmorSkills>
       <div className="grid gap-2 sm:grid-cols-3">
         {[0, 1, 2].map((i) => {
           // if (!body?.slots[i]) return;
@@ -107,6 +110,7 @@ export const EquipmentCard = () => {
         })}
       </div>
       <ArmorPickerDialog type="Arms" value={arms} setValue={setArms} />
+      <ShowArmorSkills skills={arms?.skills}></ShowArmorSkills>
       <div className="grid gap-2 sm:grid-cols-3">
         {[0, 1, 2].map((i) => {
           return (
@@ -120,6 +124,7 @@ export const EquipmentCard = () => {
         })}
       </div>
       <ArmorPickerDialog type="Waist" value={waist} setValue={setWaist} />
+      <ShowArmorSkills skills={waist?.skills}></ShowArmorSkills>
       <div className="grid gap-2 sm:grid-cols-3">
         {[0, 1, 2].map((i) => {
           return (
@@ -133,6 +138,7 @@ export const EquipmentCard = () => {
         })}
       </div>
       <ArmorPickerDialog type="Legs" value={legs} setValue={setLegs} />
+      <ShowArmorSkills skills={legs?.skills}></ShowArmorSkills>
       <div className="grid gap-2 sm:grid-cols-3">
         {[0, 1, 2].map((i) => {
           return (
