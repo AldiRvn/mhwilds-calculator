@@ -48,6 +48,7 @@ export const EquipmentCard = () => {
         <WeaponPickerDialog />
         {w.artian && <ArtianDialog />}
       </div>
+      <ShowArmorSkills skills={w.skills} isWeapon={true}></ShowArmorSkills>
       <div className="grid gap-2 sm:grid-cols-3">
         {[0, 1, 2].map((i) => {
           // if (!helm?.slots[i]) return;
